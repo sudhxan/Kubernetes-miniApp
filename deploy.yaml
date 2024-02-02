@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flask-app
+  template:
+    metadata:
+      labels:
+        app: flask-app
+    spec:
+      containers:
+      - name: flask-app
+        image: <i-will-be-entering-my-docker-username-here>/flask-kube-app:latest
+        ports:
+        - containerPort: 5000
+
+# apiVersion: Specifies the API version to use for the Deployment resource.
+# Deployment: Specifies that this is a Deployment resource.
+# name: The name of the Deployment. This is how you'll refer to it in Kubernetes commands.
+# replicas 2: Specifies that you want two instances of your application running.
+# app: Tells the Deployment which Pods to manage. In this case, it manages Pods that have the label flask-app
+# template: Tells the Deployment which Pods to manage. In this case, it manages Pods that have the label.
+# labels: Defines labels for the Pods, which are used for selecting and managing them as a group.
+# containers: A list of containers to run in each Pod.
+# image: The Docker image to use for the container.
+# ports: The port that the container listens on. Matches the port that your Flask app is configured to listen on.

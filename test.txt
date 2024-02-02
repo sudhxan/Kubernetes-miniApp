@@ -1,0 +1,2 @@
+docker build -t flask-kube-app .
+docker run -p 4000:5000 flask-kube-app
